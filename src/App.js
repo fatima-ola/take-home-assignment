@@ -2,7 +2,7 @@ import './App.css';
 import React from "react";
 
 function App() {
-  const [textInput, setTextInput] = React.useState('Here is some example text.');
+  const [textInput, setTextInput] = React.useState('');
   const [conversionMode, setConversionMode] = React.useState('lowercase');
   const [textOutput, setTextOutput] = React.useState('');
 
@@ -17,6 +17,12 @@ function App() {
   const handleSubmit = event => {
     event.preventDefault();
     setTextOutput('Your formatted text will go here!')
+    if(conversionMode === "lowercase"){
+      setTextOutput(textInput.toLowerCase());
+    }else if (conversionMode === "uppercase"){
+      setTextOutput(textInput.toUpperCase());
+    }
+
   };
 
   return (
@@ -29,6 +35,7 @@ function App() {
             <label htmlFor="text">Text to be converted:</label>
             <textarea
               id="text"
+              placeholder= "Here is some example text."
               onChange={handleTextareaChange}
               value={textInput}
             />
